@@ -83,8 +83,31 @@ class dataProcessor:
         with open("user_comments.json", "r", encoding="utf-8") as read_file:
             data = json.load(read_file)
         print("good! valid json output!")
+    def getAverageCommentLength(self):
+        with open("user_comments_all.json", "r", encoding="utf-8") as read_file:
+            data = json.load(read_file)
+        raw_data = data["user_comments"]
+        with codecs.open('user_comment_len.json', 'a', encoding='utf-8') as f:
+            f.write('{"user_comment_len":[\n')
+        for i, cur in enumerate(raw_data):
+            user_id, user_comments = cur["id"],  cur["comments"]
+            comments = user_comments.split(" , ")
+            total_len = 0
+            for comment in comments:
+                total_len += len(comment)
+            towrite = {'id': user_id, 'average_len': '%.3f' %(total_len/len(comments))}
+            d = json.dumps(towrite, sort_keys=False, ensure_ascii=False)
+            # last one don't add ','
+            if i != len(raw_data)-1:
+                d = d + ',\n'
+            else:
+                d = d + '\n'
+            with codecs.open('user_comment_len.json', 'a', encoding='utf-8') as f:
+                f.write(d)
+        with codecs.open('user_comment_len.json', 'a', encoding='utf-8') as f:
+            f.write(']}\n')
 d = dataProcessor()
-d.loadFromJson()
-d.handsomeYuanClassify()
-d.handsomeYuanCheck()
-
+#d.loadFromJson()
+#d.handsomeYuanClassify()
+#d.handsomeYuanCheck()
+d.getAverageCommentLength()
