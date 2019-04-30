@@ -73,8 +73,6 @@ if __name__ == "__main__":
         elif label == 0 and predict == 0:
             true_negative = true_negative +1
         counter = counter + 1
-        result = open("result.txt", "a", encoding = "utf-8")
-        result.write(str(label)+" "+ str(predict) +" "+ user_comment["id"]+"\n")
     precision = true_positive/(true_positive+false_positive)
     recall = true_positive/(true_positive+false_negative)
     F1_score = 2*(precision*recall/(precision+recall))
