@@ -290,18 +290,23 @@ class dataProcessor:
                     fp += 1
                 else:
                     tn += 1
-        print('recall :', tp/(tp+fn), 'precision :', tp/(tp+fp))
+        print('troll :', tp+fn)
+        recall, precision = tp/(tp+fn), tp/(tp+fp)
+        accuracy, F1 = (tp+tn)/(tp+tn+fp+fn), 2*recall*precision/(precision+recall)
+        print('recall :', recall, 'precision :', precision)
+        print('accuracy :', accuracy, 'F1 :', F1)
     def getBoxPlot(self):
         with open("user_comments_all.json", "r", encoding="utf-8") as read_file:
             data = json.load(read_file)
         user_isTroll = {}
         for comment in data["user_comments"]:
             user_isTroll[comment['id']] = comment['isTroll']
-        with open("user_comment_len.json", "r", encoding="utf-8") as read_file:
+        #with open("user_comment_len.json", "r", encoding="utf-8") as read_file:
+        with open("user_average_response_time.json", "r", encoding="utf-8") as read_file:
             data = json.load(read_file)
         trollLen, nonTrollLen, allLen = [], [], [] 
-        for d in data["user_comment_len"]:
-            user, l = d['id'], d['average_len']
+        for d in data["user_response_time"]:
+            user, l = d['id'], d['average_time']
             if user not in user_isTroll:
                 continue
             if user_isTroll[user]:
@@ -309,7 +314,7 @@ class dataProcessor:
             else:
                 nonTrollLen.append(float(l))
             allLen.append(float(l))
-        print('stats for all users:')
+        #print('stats for all users:')
         allLen.sort()
         nonTrollLen.sort()
         trollLen.sort()
@@ -327,7 +332,9 @@ class dataProcessor:
         ax.set_xticklabels(['All Users', 'Trolls', 'Normal Users'])
 
         # Save the figure
-        fig.savefig('boxplot.png', bbox_inches='tight')
+        # fig.savefig('boxplotTime.png', bbox_inches='tight')
+        
+        
         
     
     
@@ -340,6 +347,6 @@ d = dataProcessor()
 #d.getAverageCommentLength()
 #d.getAverageResponseTime()
 #d.troll_average_time()
-#d.troll_average_len()
+d.troll_average_len()
 #d.getPrecisionRecall()
 d.getBoxPlot()
