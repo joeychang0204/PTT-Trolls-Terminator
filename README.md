@@ -1,4 +1,4 @@
-# Trolls-Terminator
+# PTT-Trolls-Terminator
 We try to classify the trolls on PTT, which is the most popular forum in Taiwan.  
 [Technical report](https://github.com/joeychang0204/Trolls-Terminator/blob/master/documents/report.pdf)
 [data](https://drive.google.com/drive/u/1/folders/0AH9reGUEmVJkUk9PVA)
