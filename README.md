@@ -1,6 +1,6 @@
 # PTT-Trolls-Terminator
 We try to classify the trolls on PTT, which is the most popular forum in Taiwan.  
-[Technical report](https://github.com/joeychang0204/Trolls-Terminator/blob/master/documents/report.pdf)
+[Technical report](https://github.com/joeychang0204/Trolls-Terminator/blob/master/documents/report.pdf)  
 [data](https://drive.google.com/drive/u/1/folders/0AH9reGUEmVJkUk9PVA)
 
 ## Data Collection
@@ -15,10 +15,12 @@ As a result, 835 (about one-third) of users are classified as trolls while the o
 
 ## Methods
 
-![The architecture of PTT Trolls Terminator](https://github.com/joeychang0204/Trolls-Terminator/blob/master/documents/overview.png)
 * Comment Length Analysis
 * Used IP Number Analysis
 * Content-based SVM classifier
+  
+![The architecture of PTT Trolls Terminator](https://github.com/joeychang0204/Trolls-Terminator/blob/master/documents/overview.png)
+
 
 
 ## Result
